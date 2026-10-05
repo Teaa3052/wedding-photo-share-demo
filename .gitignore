@@ -1,0 +1,11 @@
+node_modules/
+.env
+credentials.json
+token.json
+.DS_Store
+npm-debug.log*
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+
+# Generated QR sheets (npm run qr:print)
+print/

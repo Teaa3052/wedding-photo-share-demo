@@ -1,0 +1,29 @@
+{
+  "name": "wedding-photo-share",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Minimal wedding photo sharing app backed by Google Drive.",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "google:authorize": "node scripts/get-google-token.js",
+    "qr:print": "node scripts/make-qr-print.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@google-cloud/secret-manager": "^7.1.0",
+    "busboy": "^1.6.0",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "googleapis": "^156.0.0",
+    "heic-convert": "^2.1.0",
+    "helmet": "^8.1.0",
+    "sharp": "^0.35.4"
+  },
+  "devDependencies": {
+    "qrcode": "^1.5.4"
+  }
+}

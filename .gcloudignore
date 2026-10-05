@@ -1,0 +1,13 @@
+.gcloudignore
+.git
+.gitignore
+node_modules/
+.env
+npm-debug.log*
+.DS_Store
+README.md
+credentials.json
+token.json
+CLAUDE.md
+.claude/
+print/

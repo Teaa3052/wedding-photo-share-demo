@@ -1,0 +1,28 @@
+runtime: nodejs22
+env: standard
+
+env_variables:
+  NODE_ENV: "production"
+  BASE_URL: "https://YOUR-PROJECT-ID.ew.r.appspot.com"
+  WEDDING_NAMES: "Mladenka & Mladoženja"
+  WEDDING_DATE: "20.06.2026"
+  MAX_FILE_MB: "32"
+  COMPRESS_ABOVE_MB: "3"
+  GOOGLE_REDIRECT_URI: "https://YOUR-PROJECT-ID.ew.r.appspot.com/oauth2callback"
+  # Optional. Leave blank for automatic folder creation.
+  DRIVE_FOLDER_ID: ""
+
+entrypoint: "node server.js"
+
+# F4 gives 1536MB / 2.4GHz instead of the default F1 (384MB / 600MHz) — the extra
+# headroom is for concurrent HEIC-to-JPEG conversion and image resizing during
+# upload bursts, which is the main memory risk in this app.
+instance_class: F4
+
+# min_instances: 0 so nothing runs (and nothing is billed) while the site is idle.
+# Set this to 1 a day or two before the wedding so the first guest never waits on
+# a cold start, and back to 0 afterwards.
+automatic_scaling:
+  min_instances: 0
+  max_instances: 15
+  max_concurrent_requests: 6
