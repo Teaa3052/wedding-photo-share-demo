@@ -26,7 +26,7 @@ response field, mirror it in `demo/demo.js`.
 
 There is no test suite, linter, or build step.
 
-Local pages: `/` (guest gallery + upload), `/admin` (delete uploads; currently non-functional, see "Admin" below), `/health`. The printable QR sheet is not a
+Local pages: `/` (guest gallery + upload), `/admin` (delete uploads), `/health`. The printable QR sheet is not a
 page: `npm run qr:print` writes plain `print/qr-a4.pdf`, `qr-a5.pdf` and `qr-a6.pdf` (table card) from `scripts/make-qr-print.mjs`, using
 `BASE_URL` and `WEDDING_NAMES` from `app.yaml`.
 Config comes from `.env` (copy `.env.example`); it contains live Google credentials, so don't print or commit it.
@@ -41,7 +41,7 @@ No database; **Google Drive is the only storage**. The backend authenticates as 
 account using a long-lived OAuth refresh token (scope `drive.file`); guests never sign in to anything.
 
 - [server.js](server.js) — the whole backend (ESM, Express 5, `googleapis`). [public/](public/) is served statically
-  with no bundler: vanilla JS in `app.js`, one shared `styles.css`, and `index.html`/`admin.html`.
+  with no bundler: vanilla JS in `app.js`, one shared `styles.css`, and `index.html`/`admin.html` (+ `admin.js`).
   Any GET that is not `/api/*` or `/oauth2callback` falls through to `index.html`.
 - **Secrets** (`GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REFRESH_TOKEN`, `ADMIN_PASSWORD`): read from env,
   and at startup any that are missing are fetched from Google Secret Manager when `GOOGLE_CLOUD_PROJECT` is set. That
@@ -65,10 +65,7 @@ account using a long-lived OAuth refresh token (scope `drive.file`); guests neve
   removes that preview too. A shared semaphore (3) caps concurrent HEIC/resize work across both uploads and previews to
   stay within instance memory.
 - **Admin**: `DELETE /api/files/:id` requires `Authorization: Bearer <ADMIN_PASSWORD>`. Listing (`GET /api/files`) is
-  public; the admin page just keeps the password in `sessionStorage`. Known issue: helmet's default CSP
-  (`script-src 'self'`) blocks the inline `<script>` in `admin.html`, so its button does nothing. The couple does not
-  use it (they delete photos directly in Drive, which leaves the preview JPEGs behind in the "(previews)" folder);
-  fixing it means moving that script into an external file.
+  public; the admin page just keeps the password in `sessionStorage`. Its script lives in `public/admin.js`, not inline, because helmet's default CSP (`script-src 'self'`) blocks inline scripts.
 - **Guest page behavior**: `refresh()` (every 30 s) reloads only the newest page. Once a guest pressed "Učitaj još"
   (`extraPagesLoaded`) the older loaded pages are kept and merged instead of being dropped, and an open lightbox keeps
   pointing at the same photo when new uploads shift the indices. Upload feedback: `setStatus()` writes the status line

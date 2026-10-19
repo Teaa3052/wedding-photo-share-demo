@@ -42,7 +42,7 @@ Sample photos are free-licence images from [Unsplash](https://unsplash.com/licen
 - Creates the Drive folder automatically if `DRIVE_FOLDER_ID` is blank.
 - Makes the wedding folder link-viewable so guests do not need Google accounts.
 - Shows a responsive photo gallery.
-- Includes an admin page at `/admin` for deleting photos. It is **currently not working and not in use**: Helmet's Content-Security-Policy blocks its inline script (the delete API itself works). Photos can be deleted directly in Google Drive instead. The printable QR sheet is generated separately (`npm run qr:print`).
+- Includes an admin page at `/admin` for deleting photos (password from `ADMIN_PASSWORD`). Deleting a photo there also removes its generated preview. The printable QR sheet is generated separately (`npm run qr:print`).
 - Does not require a database.
 
 ## 1. Install Node.js
