@@ -17,7 +17,12 @@ npm start                  # node server.js on PORT (default 3000)
 npm run dev                # node --watch server.js
 npm run google:authorize   # one-off: prints a Google refresh token for GOOGLE_REFRESH_TOKEN in .env
 gcloud app deploy          # deploy (App Engine standard, see Deployment)
+npm run demo:build         # static portfolio demo into demo-dist/ (GitHub Pages, see README "Demo version")
 ```
+
+The demo is the unchanged guest page plus `demo/demo.js`, which fakes the `/api/*` responses in the browser
+(Unsplash sample photos, uploads kept as object URLs in the visitor's tab). If `app.js` starts using a new endpoint or
+response field, mirror it in `demo/demo.js`.
 
 There is no test suite, linter, or build step.
 

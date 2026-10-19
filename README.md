@@ -4,6 +4,35 @@ Minimal wedding photo-sharing app:
 
 QR code -> website -> upload photos -> files go to Google Drive -> shared gallery.
 
+**Live demo:** https://teaa3052.github.io/wedding-photo-share-demo/ (best viewed on a phone)
+
+## Demo version
+
+The live demo is a static build of the same guest page with no server or Google Drive behind it.
+`demo/demo.js` is loaded before `public/app.js` and answers its `/api/*` requests in the browser: the gallery shows
+sample photos, and "Dodaj fotografije" adds the chosen photos only to the visitor's own tab (nothing is uploaded or
+stored). `app.js`, `styles.css` and `index.html` are the unchanged production files.
+
+```bash
+npm run demo:build   # writes demo-dist/
+```
+
+`.github/workflows/demo-pages.yml` builds and publishes `demo-dist/` to GitHub Pages on every push to `main`.
+
+Sample photos are free-licence images from [Unsplash](https://unsplash.com/license), loaded from Unsplash's CDN:
+[1](https://unsplash.com/photos/wedding-guests-toast-the-kissing-couple-with-raised-drinks-Tao4DFuqmsQ),
+[2](https://unsplash.com/photos/man-in-blue-suit-kissing-woman-in-white-wedding-dress-dvF6s1H1x68),
+[3](https://unsplash.com/photos/people-raising-wine-glass-in-selective-focus-photography-ULHxWq8reao),
+[4](https://unsplash.com/photos/men-and-women-dancing-joyfully-at-an-outdoor-event-1Cz07Xm3lvY),
+[5](https://unsplash.com/photos/bride-and-groom-standing-beside-brown-wooden-wall-JFAPl7brL6U),
+[6](https://unsplash.com/photos/clear-wine-glass-lot-on-table-O38Id_cyV4M),
+[7](https://unsplash.com/photos/a-bride-and-groom-dancing-at-their-wedding-reception-q5FNF6EEE30),
+[8](https://unsplash.com/photos/man-and-woman-kissing-on-green-grass-field-during-sunset-5d4XBj7GYeo),
+[9](https://unsplash.com/photos/couple-dancing-joyfully-at-a-lively-outdoor-party-DBkpJvEkuew),
+[10](https://unsplash.com/photos/clear-long-stem-wine-glasses-on-table-hw_sKmjb0ns),
+[11](https://unsplash.com/photos/people-in-white-dress-dancing-on-green-grass-field-during-daytime-riHGdvluDk8),
+[12](https://unsplash.com/photos/photo-of-a-man-and-woman-newly-wedding-holding-a-balloons-mW8IZdX7n8E).
+
 ## What it does
 
 - Uploads photos one at a time.

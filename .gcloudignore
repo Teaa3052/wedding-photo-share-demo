@@ -11,3 +11,6 @@ token.json
 CLAUDE.md
 .claude/
 print/
+demo/
+demo-dist/
+.github/

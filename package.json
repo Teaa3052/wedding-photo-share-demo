@@ -8,7 +8,8 @@
     "start": "node server.js",
     "dev": "node --watch server.js",
     "google:authorize": "node scripts/get-google-token.js",
-    "qr:print": "node scripts/make-qr-print.mjs"
+    "qr:print": "node scripts/make-qr-print.mjs",
+    "demo:build": "node scripts/build-demo.mjs"
   },
   "engines": {
     "node": ">=22"

@@ -9,3 +9,6 @@ npm-debug.log*
 
 # Generated QR sheets (npm run qr:print)
 print/
+
+# Built static demo (npm run demo:build)
+demo-dist/
